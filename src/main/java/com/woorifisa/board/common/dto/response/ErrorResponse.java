@@ -11,7 +11,7 @@ public class ErrorResponse {
     private final int code;
     private final String message;
 
-    public ErrorResponse fail(ExceptionStatus status) {
+    public static ErrorResponse fail(ExceptionStatus status) {
         return new ErrorResponse(status.getCode(), status.getMessage());
     }
 

@@ -1,5 +1,8 @@
 package com.woorifisa.board.common.exception.base;
 
+import lombok.Getter;
+
+@Getter
 public class BaseAbstractException extends RuntimeException {
 
     protected final ExceptionStatus exceptionStatus;
