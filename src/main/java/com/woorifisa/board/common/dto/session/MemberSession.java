@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class MemberSession {
 
-    public static final String KEY = "MEMBER";
+	public static final String KEY = "MEMBER";
 
-    private final Long id;
-    private final String email;
+	private final Long id;
+	private final String email;
 
 }

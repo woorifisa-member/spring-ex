@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(PARAMETER)
 @Retention(RUNTIME)
 public @interface Login {
+
+	String role();
 }

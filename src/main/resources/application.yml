@@ -1,15 +1,23 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: 1234
+    url: jdbc:h2:~/test
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
 
   jpa:
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    hibernate:
-#      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
+    show-sql: true
+  #    hibernate:
+  #      ddl-auto: create
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+

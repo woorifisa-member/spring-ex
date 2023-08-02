@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class MemberResponse {
 
-    private final String email;
-    private final String name;
+	private final Long id;
+	private final String email;
+	private final String name;
 
 }
