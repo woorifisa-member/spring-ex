@@ -1,14 +1,14 @@
-package com.woorifisa.board.domain.member.dto.request;
+package com.woorifisa.board.domain.dto.member.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-public class SignupRequest {
+public class DummySignupRequest {
 
 	@Email
 	@NotBlank

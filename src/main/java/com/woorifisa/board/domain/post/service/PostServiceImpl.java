@@ -15,6 +15,7 @@ import com.woorifisa.board.domain.post.dto.response.PostResponse;
 import com.woorifisa.board.domain.post.entity.Post;
 import com.woorifisa.board.domain.post.repository.PostRepository;
 
+@Transactional(readOnly = true)
 @Service
 public class PostServiceImpl implements PostService {
 
