@@ -39,11 +39,6 @@ public class PostController {
 		return CommonResponse.success(CREATED, CREATED.value(), post);
 	}
 
-	@GetMapping("/init")
-	public void init() {
-		postService.init();
-	}
-
 	@GetMapping("/{postId}")
 	public void retrievePost() {
 
