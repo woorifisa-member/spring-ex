@@ -1,5 +1,7 @@
 package com.woorifisa.board.domain.post.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 
 import com.woorifisa.board.common.dto.response.PageResponse;
@@ -14,6 +16,8 @@ public interface PostService {
 	PostResponse retrievePost(Long id);
 
 	PageResponse<PostResponse> retrievePosts(Pageable pageable);
+
+	List<PostResponse> retrieveAll();
 
 	PostResponse updatePost(PostRequest postRequest);
 

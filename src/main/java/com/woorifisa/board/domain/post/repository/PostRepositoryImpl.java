@@ -38,4 +38,14 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 		return new PageImpl<>(posts, pageable, totalPage);
 	}
+
+	@Override
+	public List<Post> findAllPosts() {
+		QPost post = QPost.post;
+		return queryFactory
+			.selectFrom(post)
+			.join(post.member).fetchJoin()
+			.fetch();
+	}
+
 }

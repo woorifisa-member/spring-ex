@@ -69,6 +69,14 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	public List<PostResponse> retrieveAll() {
+		return postRepository.findAllPosts()
+			.stream()
+			.map(PostResponse::fromEntity)
+			.collect(toList());
+	}
+
+	@Override
 	public PostResponse updatePost(PostRequest postRequest) {
 		return null;
 	}
