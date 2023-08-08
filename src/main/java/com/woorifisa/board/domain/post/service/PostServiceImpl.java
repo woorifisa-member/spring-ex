@@ -67,4 +67,20 @@ public class PostServiceImpl implements PostService {
 		return false;
 	}
 
+	@Transactional
+	@Override
+	public void init() {
+		for (int i = 0; i < 100; i++) {
+			Member member = memberRepository.findById(i % 4L + 1).orElseThrow();
+			Post post = Post.builder()
+				.title(String.format("%s TITLE %d", member.getName(), i))
+				.content(String.format("%s CONTENT %d", member.getName(), i))
+				.member(member)
+				.build();
+
+			postRepository.save(post);
+		}
+
+	}
+
 }

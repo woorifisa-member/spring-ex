@@ -66,4 +66,9 @@ public class MemberController {
 		throw new UnauthorizedException();
 	}
 
+	@GetMapping("/init")
+	public void init() {
+		memberService.init();
+	}
+
 }

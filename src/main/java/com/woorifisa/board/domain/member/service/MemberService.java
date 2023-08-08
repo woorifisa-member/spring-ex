@@ -6,8 +6,9 @@ import com.woorifisa.board.domain.member.dto.response.MemberResponse;
 
 public interface MemberService {
 
-    MemberResponse signup(SignupRequest signupRequest);
+	MemberResponse signup(SignupRequest signupRequest);
 
-    MemberResponse login(LoginRequest loginRequest);
+	MemberResponse login(LoginRequest loginRequest);
 
+	void init();
 }

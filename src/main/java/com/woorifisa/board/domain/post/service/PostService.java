@@ -20,4 +20,6 @@ public interface PostService {
 
 	boolean deletePost(Long id);
 
+	void init();
+
 }
