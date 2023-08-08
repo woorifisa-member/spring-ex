@@ -1,7 +1,5 @@
 package com.woorifisa.board.domain.member.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 
+	@Transactional
 	@Override
 	public MemberResponse signup(SignupRequest signupRequest) {
 
@@ -60,37 +59,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		throw new UnauthorizedException();
-	}
-
-	@Transactional
-	public void init() {
-		String pwd = passwordEncoder.encode("1234");
-
-		Member minsu = Member.builder()
-			.email("dkrak3212@gmail.com")
-			.password(pwd)
-			.name("김민수")
-			.build();
-
-		Member sunju = Member.builder()
-			.email("201902133@hufs.ac.kr")
-			.password(pwd)
-			.name("양선주")
-			.build();
-
-		Member dongyeol = Member.builder()
-			.email("eastheat10@gmail.com")
-			.password(pwd)
-			.name("윤동열")
-			.build();
-
-		Member cheolcheol = Member.builder()
-			.email("dream174822@gmail.com")
-			.password(pwd)
-			.name("황철원")
-			.build();
-
-		memberRepository.saveAll(List.of(minsu, sunju, dongyeol, cheolcheol));
 	}
 
 }

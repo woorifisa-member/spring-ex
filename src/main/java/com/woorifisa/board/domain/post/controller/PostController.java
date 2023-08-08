@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.*;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.woorifisa.board.common.dto.response.CommonResponse;
+import com.woorifisa.board.common.dto.response.PageResponse;
 import com.woorifisa.board.common.dto.session.MemberSession;
 import com.woorifisa.board.domain.post.dto.request.PostRequest;
 import com.woorifisa.board.domain.post.dto.response.PostResponse;
@@ -39,19 +42,19 @@ public class PostController {
 		return CommonResponse.success(CREATED, CREATED.value(), post);
 	}
 
-	@GetMapping("/init")
-	public void init() {
-		postService.init();
-	}
-
 	@GetMapping("/{postId}")
 	public void retrievePost() {
 
 	}
 
 	@GetMapping
-	public void retrievePosts() {
+	public ResponseEntity<CommonResponse<PageResponse<PostResponse>>> retrievePosts(
+		@RequestParam(required = false, defaultValue = "1") Integer page,
+		@RequestParam(required = false, defaultValue = "10") Integer size) {
 
+		PageResponse<PostResponse> postResponse = postService.retrievePosts(PageRequest.of(page - 1, size));
+
+		return CommonResponse.success(OK, OK.value(), postResponse);
 	}
 
 	@PutMapping

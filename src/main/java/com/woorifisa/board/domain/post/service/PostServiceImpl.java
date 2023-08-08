@@ -1,11 +1,15 @@
 package com.woorifisa.board.domain.post.service;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.woorifisa.board.common.dto.response.PageResponse;
 import com.woorifisa.board.common.dto.session.MemberSession;
 import com.woorifisa.board.domain.member.entity.Member;
 import com.woorifisa.board.domain.member.exception.MemberNotFoundException;
@@ -48,13 +52,20 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostRequest retrievePost(Long id) {
+	public PostResponse retrievePost(Long id) {
 		return null;
 	}
 
 	@Override
-	public List<PostRequest> retrievePosts(Pageable pageable) {
-		return null;
+	public PageResponse<PostResponse> retrievePosts(Pageable pageable) {
+		Page<Post> page = postRepository.findPosts(pageable);
+
+		List<PostResponse> posts = page.getContent()
+			.stream()
+			.map(PostResponse::fromEntity)
+			.collect(toList());
+
+		return PageResponse.of(posts, pageable.getPageNumber() + 1, page.getTotalPages());
 	}
 
 	@Override
@@ -65,22 +76,6 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean deletePost(Long id) {
 		return false;
-	}
-
-	@Transactional
-	@Override
-	public void init() {
-		for (int i = 0; i < 100; i++) {
-			Member member = memberRepository.findById(i % 4L + 1).orElseThrow();
-			Post post = Post.builder()
-				.title(String.format("%s TITLE %d", member.getName(), i))
-				.content(String.format("%s CONTENT %d", member.getName(), i))
-				.member(member)
-				.build();
-
-			postRepository.save(post);
-		}
-
 	}
 
 }

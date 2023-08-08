@@ -10,5 +10,4 @@ public interface MemberService {
 
 	MemberResponse login(LoginRequest loginRequest);
 
-	void init();
 }
