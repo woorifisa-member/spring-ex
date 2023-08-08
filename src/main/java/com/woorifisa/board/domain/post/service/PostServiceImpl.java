@@ -1,5 +1,7 @@
 package com.woorifisa.board.domain.post.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +56,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public PageResponse<PostResponse> retrievePosts(Pageable pageable) {
 
+		return null;
+	}
+
+	@Override
+	public List<PostResponse> retrieveAllPosts() {
 		return null;
 	}
 

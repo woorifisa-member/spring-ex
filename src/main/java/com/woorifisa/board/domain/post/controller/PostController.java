@@ -2,6 +2,8 @@ package com.woorifisa.board.domain.post.controller;
 
 import static org.springframework.http.HttpStatus.*;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,14 @@ public class PostController {
 	@GetMapping
 	public void retrievePosts() {
 
+	}
+
+	@GetMapping("/all")
+	public ResponseEntity<CommonResponse<List<PostResponse>>> retrieveAllPosts() {
+
+		List<PostResponse> postResponses = postService.retrieveAllPosts();
+
+		return CommonResponse.success(OK, OK.value(), postResponses);
 	}
 
 	@PutMapping
